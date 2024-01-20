@@ -1339,7 +1339,6 @@ void __init setup_log_buf(int early)
 	}
 
 	if (unlikely(!new_log_buf)) {
-		pr_notice("log_buf_len: %ld bytes not available\n",
 		pr_err("log_buf_len: %lu bytes not available\n",
 			new_log_buf_len);
 		return;

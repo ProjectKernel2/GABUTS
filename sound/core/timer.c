@@ -286,8 +286,6 @@ int snd_timer_open(struct snd_timer_instance **ti,
 		if (t->flags & SNDRV_TIMER_IFLG_EXCLUSIVE) {
 			mutex_unlock(&register_mutex);
 			return -EBUSY;
-			err = -EBUSY;
-			goto unlock;
 		}
 	}
 	timeri = snd_timer_instance_new(owner, timer);
