@@ -2857,6 +2857,13 @@ void f2fs_invalidate_page(struct page *page, unsigned int offset,
 	}
 
 	clear_cold_data(page);
+<<<<<<< HEAD
+=======
+
+	/* This is atomic written page, keep Private */
+	if (IS_ATOMIC_WRITTEN_PAGE(page))
+		return;
+>>>>>>> e78ce53c74daa049cdba668882e2e688668f2625
 
 	if (IS_ATOMIC_WRITTEN_PAGE(page))
 		return f2fs_drop_inmem_page(inode, page);
@@ -2876,6 +2883,8 @@ int f2fs_release_page(struct page *page, gfp_t wait)
 
 	clear_cold_data(page);
 	f2fs_clear_page_private(page);
+	set_page_private(page, 0);
+	ClearPagePrivate(page);
 	return 1;
 }
 
